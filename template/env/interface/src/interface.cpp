@@ -15,10 +15,20 @@
 */
 CommandInformation CommandInfo[] =
 {
-    {INTERFACE_COMMAND_1,    "Command_1"},
-    {INTERFACE_COMMAND_2,    "Command_2"},
-    {INTERFACE_COMMAND_3,    "Command_3"},
-    {INTERFACE_COMMAND_EXIT, "Exit"},
+    {INTERFACE_COMMAND_1,    "Создать треугольник (6 координат)"},
+    {INTERFACE_COMMAND_2,    "Удалить последний треугольник"},
+    {INTERFACE_COMMAND_3,    "Показать последний треугольник"},
+    {INTERFACE_COMMAND_EXIT, "Выход"},
+    {INTERFACE_COMMAND_5,    "Изменить вершины последнего треугольника"},
+    {INTERFACE_COMMAND_6,    "Длины сторон"},
+    {INTERFACE_COMMAND_7,    "Периметр"},
+    {INTERFACE_COMMAND_8,    "Углы"},
+    {INTERFACE_COMMAND_9,    "Тип треугольника"},
+    {INTERFACE_COMMAND_10,   "Площадь"},
+    {INTERFACE_COMMAND_11,   "Сумма площадей последних двух"},
+    {INTERFACE_COMMAND_12,   "Разность площадей последних двух"},
+    {INTERFACE_COMMAND_13,   "Подобие последних двух"},
+    {INTERFACE_COMMAND_14,   "Показать все треугольники"},
 };
 
 
@@ -35,7 +45,7 @@ Interface::Interface(InterfaceStream* i_stream) : stream(i_stream)
 Interface::~Interface()
 {
     DEBUG_LOGGING("Destroy interface");
-    
+
     // Оповещение пользователя о работе с интерфейсом
     leave();
 
@@ -58,7 +68,7 @@ void Interface::set(std::string path)
 void Interface::show()
 {
     DEBUG_LOGGING("Show menu");
-    
+
     std::cout << std::endl << "Available commands:" << std::endl;
     for (CommandInformation item : CommandInfo)
     {
@@ -69,21 +79,21 @@ void Interface::show()
 void Interface::invite()
 {
     DEBUG_LOGGING("Invite input");
-    
+
     std::cout << std::endl << "Enter command: ";
 }
 
 void Interface::leave()
 {
     DEBUG_LOGGING("Leave interface");
-    
+
     std::cout << std::endl << "Finish" << std::endl;
 }
 
 int Interface::read()
 {
     DEBUG_LOGGING("Read interface command");
-    
+
     try
     {
         int cur_command_ID = stream->read();
@@ -116,11 +126,11 @@ template<typename T> T Interface::read_ex()
 
     try
     {
-	return stream->read_ex<T>();
+        return stream->read_ex<T>();
     }
     catch (InterfaceStreamException &ex)
     {
-	throw InterfaceException(ex.res(), ex.msg());
+        throw InterfaceException(ex.res(), ex.msg());
     }
 }
 

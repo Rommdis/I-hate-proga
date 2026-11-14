@@ -25,7 +25,7 @@
 /*!
     \brief Команда интерфейса: недопустимая команда
 */
-#define INTERFACE_COMMAND_INVALID   5
+#define INTERFACE_COMMAND_INVALID   99
 /*!
     \brief Команда интерфейса: команда 1
 */
@@ -38,6 +38,16 @@
     \brief Команда интерфейса: команда 3
 */
 #define INTERFACE_COMMAND_3         3
+#define INTERFACE_COMMAND_5         5
+#define INTERFACE_COMMAND_6         6
+#define INTERFACE_COMMAND_7         7
+#define INTERFACE_COMMAND_8         8
+#define INTERFACE_COMMAND_9         9
+#define INTERFACE_COMMAND_10        10
+#define INTERFACE_COMMAND_11        11
+#define INTERFACE_COMMAND_12        12
+#define INTERFACE_COMMAND_13        13
+#define INTERFACE_COMMAND_14        14
 /*!
     \brief Команда интерфейса: команда выхода
 */
@@ -48,7 +58,7 @@
 /*!
     Описание структуры команды
 */
-typedef struct 
+typedef struct
 {
     /*!
         Идентификатор команды
@@ -72,7 +82,7 @@ private:
         Поток пользовательских команд
     */
     InterfaceStream* stream = nullptr;
-    
+
     /*!
         Признак самотестирования реализации
     */
@@ -84,29 +94,29 @@ public:
         Конструктор класса интерфейса
     */
     Interface();
-    
+
     /*!
         Конструктор класса интерфейса с инициализацией входного потока пользовательских команд
-        \param[in] i_stream Искомый входной поток 
+        \param[in] i_stream Искомый входной поток
     */
     Interface(InterfaceStream* i_stream);
-    
+
     /*!
         Деструктор класса интерфейса
     */
     ~Interface();
-    
+
     /*!
         Установка источника для считывания пользовательских команд интерфейса
         \param[in] path Путь расположения источника
     */
     void set(std::string path);
-    
+
     /*!
         Распечатка допустимых команд интерфейса
     */
     void show();
-    
+
     /*!
         Приглашение к вводу очередной команды интерфейса
     */
